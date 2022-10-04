@@ -6,7 +6,7 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:31:19 by aquintil          #+#    #+#             */
-/*   Updated: 2022/09/22 17:31:22 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:40:19 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned	int	ft_strlcat(char *dest, char *src, unsigned int size)
 	count1 = 0;
 	count2 = 0;
 	src_len = ft_strlen(src);
-	while (dest[count1] != '\0')
+	while (dest[count1] != '\0' && count1 < size)
 	{
 		count1++;
 	}

@@ -6,13 +6,13 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:32:13 by aquintil          #+#    #+#             */
-/*   Updated: 2022/09/22 17:32:16 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:38:09 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c > 64 && c < 91)
 		return (c + 32);

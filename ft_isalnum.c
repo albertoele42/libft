@@ -6,13 +6,13 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:28:29 by aquintil          #+#    #+#             */
-/*   Updated: 2022/09/22 17:28:33 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:37:37 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
 	if ((c > 64 && c < 91) || (c > 96 && c < 123) || (c > 47 && c < 58))
 		return (1);
