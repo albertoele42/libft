@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrchr.c                                          :+:      :+:    :+:   */
+/*   strlcopy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 17:32:41 by aquintil          #+#    #+#             */
-/*   Updated: 2022/09/22 17:32:44 by aquintil         ###   ########.fr       */
+/*   Created: 2022/09/22 17:31:04 by aquintil          #+#    #+#             */
+/*   Updated: 2022/09/22 17:31:08 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	i;
-	
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
+	unsigned int	count;
+
+	count = 0;
+	if (size != 0)
 	{
-		if (s[i] == c)
-			return ((char *)s + i);
-		i--;
+		while (count < size - 1 && src[count] != '\0')
+		{
+			dest[count] = src[count];
+			count++;
+		}
+		dest[count] = '\0';
 	}
-	return (0);
+	return (ft_strlen(src));
 }
