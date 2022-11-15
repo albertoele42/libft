@@ -6,12 +6,13 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 08:31:27 by aquintil          #+#    #+#             */
-/*   Updated: 2022/11/15 09:15:55 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:02:05 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int ft_size(int nb)
 {
@@ -28,46 +29,39 @@ int ft_size(int nb)
 	return (i);
 }
 
-void ft_fill()
-
-/*
- 	if (nb == -2147483648)
+void	ft_putnbr(char *ptr, int nb, int size)
+{
+	ptr[size] = '\0';
+	if (nb < 0)
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		nb = 147483648;
+		ptr[--size] = '-';
+		nb *= -1;
 	}
-	else if (nb < 0)
+	while (size >= 0)
 	{
-		ft_putchar('-');
-		nb = -nb;
+		ptr[--size] = nb % 10 + 48;
+		nb /= 10;
 	}
-	if (nb < 10)
-	{
-		ft_putchar(nb + 48);
-	}
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-
- */
-
+}
 
 char	*ft_itoa(int nb)
 {
-	char *ptr;
+	char	*ptr;
+	int		size;
 
+	size = ft_size(nb);
 	ptr = NULL;
-	ptr = malloc((ft_size(nb) + 1) * sizeof(char));
+	ptr = malloc((size + 1) * sizeof(char));
 	if (!ptr)
 		return (0);
-
+	if (nb == -2147483648)
+		ptr = "-214783648";
+	else
+		ft_putnbr(ptr, nb, size);
+	return (ptr);
 }
-
 
 int	main()
 {
-	printf("%i\n", ft_count(-2147483648));
+	printf("%s\n", ft_itoa(-2147489));
 }
