@@ -10,33 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int ft_size(char const *s, char c)
-{
-	int	i;
-	int j;
-	int	size;
-
-	size = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		j = 0;
-		while (s[i] && s[i] != c)
-		{
-			j++;
-			i++;
-		}
-		size += j + 1;
-	}
-	return (size);
-}
+#include "libft.h"
 
 int ft_words(char const *s, char c)
 {
@@ -53,68 +27,80 @@ int ft_words(char const *s, char c)
 		while (s[i] && s[i] != c)
 			i++;
 	}
-	if (s[strlen(s) - 1] == c)
+	if (s[ft_strlen(s) - 1] == c)
 		words--;
 	return (words);
 }
 
-void ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
-	int		i;
-	int		pos;
+	int	i;
+	int	j;
+	int	k;
+	int	words;
 	char	**ptr;
 
-	pos = 0;
+	words = 0;
 	i = 0;
-	ptr = NULL;
-	ptr = malloc(ft_size(s,c) * sizeof(char));
-}
-
-int	main()
-{
-	char const	s[] = "Frase***con*******separadores**de*prueba";
-	printf("%i", ft_size(s, '*'));
+	ptr = malloc((ft_words(s,c) + 1) * sizeof(char *));
+	if (!ptr)
+		return (0);
+	while (s[i] && words < ft_words(s,c))
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		j = 0;
+		while (s[i] && s[i] != c)
+		{
+			j++;
+			i++;
+		}
+		ptr[words] = malloc(j * sizeof(char));
+		if (!ptr[words])
+		{
+			while (words > 0)
+			{
+				words--;
+				free(ptr[words]);
+			}
+			free(ptr);
+			return (0);
+		}
+		k = 0;
+		while (k < j)
+		{
+			ptr[words][k] = s[i - j + k];
+			k++;
+		}
+		ptr[words][k] = '\0';
+		words++;
+	}
+	ptr[words] = NULL;
+	return (ptr);
 }
 
 /*
-void ft_split(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	pos;
-	size_t	word;
-	char	**ptr;
-
-	i = 0;
-	pos = 0;
-	word = 0;
-	ptr = NULL;
-	ptr = malloc((strlen(s) + 1) * sizeof(char));
-	while (s[i] != '\0')
-	{
-		if (s[i] == c || i == strlen(s)-1)
-		{		
-			ptr[word] = malloc((i - pos + 1) * sizeof(char));
-			j = 0;
-			while (j < i - pos)
-			{
-				ptr[word][j] = s[pos + j];
-				j++;
-			}
-			ptr[word][j] = '\0';
-			printf("%lu  -  ", (i - pos + 1));
-			printf("%s\n", ptr[word]);
-			pos = i + 1;
-			word++;
-		}
-		i++;
-	}
-	free(ptr);
-}
-
 int	main()
 {
-	char const	s[] = "*Frase***con*******separadores**de*prueba****";
-	ft_split(s, '*');
-}
-*/
+	char 		**ptr = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. ", 'i');
+	int		i;
+	int		j;
+
+	i = 0;
+	while (ptr[i])
+	{
+		j = 0;
+		while (ptr[i][j])
+		{
+			printf("%c", ptr[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	system ("leaks a.out");
+}*/
+
+
+
+
