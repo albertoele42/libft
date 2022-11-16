@@ -6,21 +6,23 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 08:31:27 by aquintil          #+#    #+#             */
-/*   Updated: 2022/11/15 10:02:05 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/11/16 08:05:22 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int ft_size(int nb)
+int	ft_size(int nb)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (nb == -2147483648)
-		return (i + 11); 
+		return (i + 11);
+	if (nb == 0)
+		return (i + 1);
+	if (nb < 0)
+		i++;
 	while (nb)
 	{
 		nb /= 10;
@@ -31,13 +33,22 @@ int ft_size(int nb)
 
 void	ft_putnbr(char *ptr, int nb, int size)
 {
+	int	limit;
+
+	limit = 0;
 	ptr[size] = '\0';
+	if (nb == -2147483648)
+	{
+		ptr[limit++] = '-';
+		ptr[limit++] = '2';
+		nb = 147483648;
+	}
 	if (nb < 0)
 	{
-		ptr[--size] = '-';
+		ptr[limit++] = '-';
 		nb *= -1;
 	}
-	while (size >= 0)
+	while (size > limit)
 	{
 		ptr[--size] = nb % 10 + 48;
 		nb /= 10;
@@ -54,14 +65,6 @@ char	*ft_itoa(int nb)
 	ptr = malloc((size + 1) * sizeof(char));
 	if (!ptr)
 		return (0);
-	if (nb == -2147483648)
-		ptr = "-214783648";
-	else
-		ft_putnbr(ptr, nb, size);
+	ft_putnbr(ptr, nb, size);
 	return (ptr);
-}
-
-int	main()
-{
-	printf("%s\n", ft_itoa(-2147489));
 }
