@@ -6,7 +6,7 @@
 #    By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 16:45:28 by aquintil          #+#    #+#              #
-#    Updated: 2022/12/12 14:46:44 by aquintil         ###   ########.fr        #
+#    Updated: 2022/12/12 16:02:07 by aquintil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,9 @@ SRCS	=	ft_isalpha.c\
 			ft_putstr_fd.c\
 			ft_putendl_fd.c\
 			ft_putnbr_fd.c\
-			ft_lstnew.c
+			ft_lstnew.c\
+			ft_lstadd_front.c\
+			ft_lstsize.c
 
 OBJS	= $(SRCS:.c=.o)
 NAME	= libft.a
