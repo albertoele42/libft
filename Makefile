@@ -6,7 +6,7 @@
 #    By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 16:45:28 by aquintil          #+#    #+#              #
-#    Updated: 2022/12/22 16:07:52 by aquintil         ###   ########.fr        #
+#    Updated: 2022/12/22 18:42:32 by aquintil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,6 @@ SRCS	=	ft_isalpha.c\
 			ft_putendl_fd.c\
 			ft_putnbr_fd.c
 
-OBJS	=	$(SRCS:.c=.o)
-
 BONUS	=	ft_lstnew.c\
 			ft_lstadd_front.c\
 			ft_lstsize.c\
@@ -54,8 +52,10 @@ BONUS	=	ft_lstnew.c\
 			ft_lstadd_back.c\
 			ft_lstdelone.c\
 			ft_lstclear.c\
-			ft_lstiter.c
+			ft_lstiter.c\
+			ft_lstmap.c
 
+OBJS	=	$(SRCS:.c=.o)
 BONUS_OBJS	=	$(BONUS:.c=.o)
 NAME	= libft.a
 INCLUDE = libft.h
