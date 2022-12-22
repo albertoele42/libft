@@ -6,7 +6,7 @@
 #    By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 16:45:28 by aquintil          #+#    #+#              #
-#    Updated: 2022/12/12 16:25:27 by aquintil         ###   ########.fr        #
+#    Updated: 2022/12/22 16:07:52 by aquintil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,20 @@ SRCS	=	ft_isalpha.c\
 			ft_putchar_fd.c\
 			ft_putstr_fd.c\
 			ft_putendl_fd.c\
-			ft_putnbr_fd.c\
-			ft_lstnew.c\
+			ft_putnbr_fd.c
+
+OBJS	=	$(SRCS:.c=.o)
+
+BONUS	=	ft_lstnew.c\
 			ft_lstadd_front.c\
 			ft_lstsize.c\
 			ft_lstlast.c\
 			ft_lstadd_back.c\
 			ft_lstdelone.c\
-			ft_lstclear.c
+			ft_lstclear.c\
+			ft_lstiter.c
 
-OBJS	= $(SRCS:.c=.o)
+BONUS_OBJS	=	$(BONUS:.c=.o)
 NAME	= libft.a
 INCLUDE = libft.h
 CC	= gcc
@@ -71,11 +75,12 @@ $(NAME): $(OBJS) $(INCLUDE)
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)

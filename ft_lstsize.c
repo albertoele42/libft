@@ -6,7 +6,7 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:02:20 by aquintil          #+#    #+#             */
-/*   Updated: 2022/12/12 16:18:15 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:45:51 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-
