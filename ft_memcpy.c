@@ -6,7 +6,7 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:30:31 by aquintil          #+#    #+#             */
-/*   Updated: 2022/09/22 17:30:35 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:22:24 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t		i;
-	char		*s1;
-	const char	*s2;
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
+	if (!dst && !src)
+		return (0);
 	s1 = dst;
-	s2 = src;
+	s2 = (unsigned char *)src;
 	i = 0;
 	while (i < n)
 	{
