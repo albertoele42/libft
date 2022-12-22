@@ -6,7 +6,7 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:32:27 by aquintil          #+#    #+#             */
-/*   Updated: 2022/10/04 17:51:04 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:33:14 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
+	while (*s != (char)c)
 	{
-		if (s[i] == c)
-			return ((char *)s + i);
-		i++;
+		if (!*s)
+			return (0);
+		s++;
 	}
-	if (c == '\0')
-		return ((char *)s + i);
-	return (0);
+	return ((char *)s);
 }
