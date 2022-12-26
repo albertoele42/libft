@@ -6,21 +6,16 @@
 /*   By: aquintil <aquintil@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:02:35 by aquintil          #+#    #+#             */
-/*   Updated: 2022/11/15 08:19:39 by aquintil         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:23:40 by aquintil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-*/
 
-int ft_words(char const *s, char c)
+static int	ft_count_words(char const *s, char c)
 {
 	int	i;
-	int words;
+	int	words;
 
 	words = 0;
 	i = 0;
@@ -37,84 +32,66 @@ int ft_words(char const *s, char c)
 	return (words);
 }
 
-void	ft_clean(char **ptr, int words)
+static void	ft_clean(char **ptr, int words)
 {
-	while (words > 0)
-	{
+	while (words)
+	{	
 		words--;
 		free(ptr[words]);
 	}
 	free(ptr);
 }
 
-char **ft_split(char const *s, char c)
+static char	*ft_get_word(char const *s, char c, int *i)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	words;
+	int		j;
+	int		k;
+	char	*word;
+
+	j = 0;
+	while (s[*i] && s[*i] != c)
+	{
+		j++;
+		(*i)++;
+	}
+	k = 0;
+	word = malloc((j + 1) * sizeof(char));
+	if (!word)
+		return (0);
+	while (k < j)
+	{
+		word[k] = s[*i - j + k];
+		k++;
+	}
+	word[k] = '\0';
+	return (word);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	int		words;
 	char	**ptr;
 
-	ptr = NULL;
-	words = 0;
-	i = 0;
 	if (!s)
-		ptr[0] = "";
-	ptr = malloc((ft_words(s,c) + 1) * sizeof(char *));
-	if (!ptr)	
 		return (0);
-	while (s[i] && words < ft_words(s,c))
+	ptr = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (!ptr)
+		return (0);
+	i = 0;
+	words = 0;
+	while (s[i] && words < ft_count_words(s, c))
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		j = 0;
-		while (s[i] && s[i] != c)
-		{
-			j++;
-			i++;
-		}
-		ptr[words] = malloc((j + 1) * sizeof(char));
+		ptr[words] = ft_get_word(s, c, &i);
 		if (!ptr[words])
 		{
 			ft_clean(ptr, words);
 			return (0);
 		}
-		k = 0;
-		while (k < j)
-		{
-			ptr[words][k] = s[i - j + k];
-			k++;
-		}
-		ptr[words][k] = '\0';
 		words++;
 	}
 	ptr[words] = NULL;
 	return (ptr);
 }
-
-/*
-int	main()
-{
-	char 		**ptr = ft_split("", 'z');
-	int		i;
-	int		j;
-
-	i = 0;
-	while (ptr[i])
-	{
-		j = 0;
-		while (ptr[i][j])
-		{
-			printf("%c", ptr[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	//system ("leaks a.out");
-}
-*/
-
-
-
-
